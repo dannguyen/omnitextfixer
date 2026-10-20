@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="OmniTextFix — a focused toolkit for cleaning, encoding, and formatting text." />
+    <title>OmniTextFixer — text utilities</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js" defer></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="OmniTextFix home">
+        <span class="brand-mark" aria-hidden="true">⌘</span>
+        <span>OmniTextfixer<span class="brand-accent">Fix</span></span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="tools-grid" aria-label="Text utilities">
+        <article class="tool-card encoder-card" id="url-tool">
+          <div class="card-heading">
+            <div class="tool-icon purple-icon" aria-hidden="true">↗</div>
+            <div><p class="card-kicker">01 / TRANSFORM</p><h2>URL encoder <span>/</span> decoder</h2></div>
+          </div>
+          <p class="card-description">Safely encode special characters for a URL, or decode them back into readable text.</p>
+          <label class="field-label" for="url-input">YOUR TEXT</label>
+          <textarea id="url-input" class="text-input" rows="5" placeholder="Paste a URL or text here…" spellcheck="false"></textarea>
+          <div class="control-row">
+            <button class="button primary" id="encode-btn" type="button">Encode <span>↗</span></button>
+            <button class="button secondary" id="decode-btn" type="button">Decode <span>↙</span></button>
+            <button class="icon-button" id="clear-url" type="button" aria-label="Clear URL text">×</button>
+          </div>
+          <div class="result-wrap hidden" id="url-result-wrap">
+            <div class="result-label"><span>RESULT</span><button class="copy-button" data-copy-target="url-result" type="button">Copy</button></div>
+            <div class="result-output" id="url-result" tabindex="0"></div>
+          </div>
+        </article>
+
+        <article class="tool-card formatter-card" id="format-tool">
+          <div class="card-heading">
+            <div class="tool-icon green-icon" aria-hidden="true">{ }</div>
+            <div><p class="card-kicker">02 / CLEAN UP</p><h2>Prettify your markup</h2></div>
+          </div>
+          <p class="card-description">Turn compressed HTML, JSON, or XML into clean, readable code with syntax highlighting.</p>
+          <div class="format-controls">
+            <div class="select-wrap"><label class="field-label" for="format-select">FORMAT</label><select id="format-select"><option value="json">JSON</option><option value="html">HTML</option><option value="xml">XML</option></select></div>
+            <div class="select-wrap"><label class="field-label" for="indent-select">INDENTATION</label><select id="indent-select"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="tab">Tabs</option></select></div>
+          </div>
+          <label class="field-label" for="format-input">YOUR CODE</label>
+          <textarea id="format-input" class="text-input code-input" rows="8" placeholder='Paste your JSON, HTML, or XML here…' spellcheck="false"></textarea>
+          <div class="control-row">
+            <button class="button green-button" id="format-btn" type="button">Prettify <span>✦</span></button>
+            <button class="icon-button" id="clear-format" type="button" aria-label="Clear code">×</button>
+            <span class="shortcut-hint">⌘ / Ctrl + Enter</span>
+          </div>
+          <div class="result-wrap hidden" id="format-result-wrap">
+            <div class="result-label"><span>FORMATTED OUTPUT</span><button class="copy-button" data-copy-target="format-result" type="button">Copy</button></div>
+            <pre class="code-output" id="format-result" tabindex="0"><code></code></pre>
+          </div>
+        </article>
+      </section>
+      <div class="error-toast" id="error-toast" role="alert" aria-live="polite"></div>
+    </main>
+
+    <footer><span>© 2024 OmniTextFix</span><span class="footer-rule"></span><span>Built for the web, by the web.</span></footer>
+  </body>
+</html>
