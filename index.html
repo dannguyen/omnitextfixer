@@ -10,17 +10,25 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" defer></script>
     <script src="./script.js" defer></script>
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="OmniTextFix home">
-        <span class="brand-mark" aria-hidden="true">⌘</span>
-        <span>OmniTextfixer<span class="brand-accent">Fix</span></span>
+        <span class="brand-mark" aria-hidden="true">☀</span>
+        <span>Omni<span class="brand-accent">Textfixer</span></span>
       </a>
     </header>
 
     <main id="top">
+      <nav class="table-of-contents" aria-label="Table of contents">
+        <span>Sections</span>
+        <a href="#marks-tool">Uncommon marks</a>
+        <a href="#url-tool">URL encoder / decoder</a>
+        <a href="#diff-tool">Compare text</a>
+        <a href="#format-tool">Prettify markup</a>
+      </nav>
       <section class="tools-grid" aria-label="Text utilities">
         <article class="tool-card encoder-card" id="url-tool">
           <div class="card-heading">
@@ -41,10 +49,30 @@
           </div>
         </article>
 
+        <article class="tool-card diff-card" id="diff-tool">
+          <div class="card-heading">
+            <div class="tool-icon blue-icon" aria-hidden="true">±</div>
+            <div><p class="card-kicker">02 / COMPARE</p><h2>Compare text</h2></div>
+          </div>
+          <p class="card-description">Compare two blocks of text and see what was added or removed.</p>
+          <div class="diff-inputs">
+            <div><label class="field-label" for="diff-original">ORIGINAL</label><textarea id="diff-original" class="text-input" rows="7" placeholder="Paste the original text…" spellcheck="false"></textarea></div>
+            <div><label class="field-label" for="diff-changed">CHANGED</label><textarea id="diff-changed" class="text-input" rows="7" placeholder="Paste the changed text…" spellcheck="false"></textarea></div>
+          </div>
+          <div class="control-row">
+            <button class="button blue-button" id="compare-btn" type="button">Compare <span>→</span></button>
+            <button class="icon-button" id="clear-diff" type="button" aria-label="Clear comparison">×</button>
+          </div>
+          <div class="result-wrap hidden" id="diff-result-wrap">
+            <div class="result-label"><span>DIFF</span><span class="diff-legend"><i class="removed-mark">−</i> removed <i class="added-mark">+</i> added</span></div>
+            <pre class="diff-output" id="diff-result" tabindex="0" aria-label="Diff output"></pre>
+          </div>
+        </article>
+
         <article class="tool-card formatter-card" id="format-tool">
           <div class="card-heading">
             <div class="tool-icon green-icon" aria-hidden="true">{ }</div>
-            <div><p class="card-kicker">02 / CLEAN UP</p><h2>Prettify your markup</h2></div>
+            <div><p class="card-kicker">03 / CLEAN UP</p><h2>Prettify your markup</h2></div>
           </div>
           <p class="card-description">Turn compressed HTML, JSON, or XML into clean, readable code with syntax highlighting.</p>
           <div class="format-controls">
@@ -63,6 +91,33 @@
             <pre class="code-output" id="format-result" tabindex="0"><code></code></pre>
           </div>
         </article>
+      </section>
+
+      <section class="marks-section" id="marks-tool" aria-labelledby="marks-heading">
+        <div class="section-heading">
+          <p class="card-kicker">04 / REFERENCE</p>
+          <h2 id="marks-heading">Uncommon marks</h2>
+        </div>
+        <div class="marks-grid">
+          <button class="mark-button" type="button" data-mark="—"><span>—</span>: em dash</button>
+          <button class="mark-button" type="button" data-mark="–"><span>–</span>: en dash</button>
+          <button class="mark-button" type="button" data-mark="«"><span>«</span>: left double angle quote marks</button>
+          <button class="mark-button" type="button" data-mark="»"><span>»</span>: right double angle quote marks</button>
+          <button class="mark-button" type="button" data-mark="©"><span>©</span>: copyright</button>
+          <button class="mark-button" type="button" data-mark="™"><span>™</span>: trademark</button>
+          <button class="mark-button" type="button" data-mark="®"><span>®</span>: registered</button>
+          <button class="mark-button" type="button" data-mark="≠"><span>≠</span>: not equals</button>
+          <button class="mark-button" type="button" data-mark="✓"><span>✓</span>: checkmark</button>
+          <button class="mark-button" type="button" data-mark="∞"><span>∞</span>: infinity sign</button>
+          <button class="mark-button" type="button" data-mark="←"><span>←</span>: leftwards arrow</button>
+          <button class="mark-button" type="button" data-mark="→"><span>→</span>: rightwards arrow</button>
+          <button class="mark-button" type="button" data-mark="⇐"><span>⇐</span>: leftwards double arrow</button>
+          <button class="mark-button" type="button" data-mark="⇒"><span>⇒</span>: rightwards double arrow</button>
+        </div>
+        <div class="mark-preview hidden" id="mark-preview" aria-live="polite">
+          <span class="selected-mark" id="selected-mark"></span>
+          <button class="button secondary" id="copy-mark" type="button">Copy</button>
+        </div>
       </section>
       <div class="error-toast" id="error-toast" role="alert" aria-live="polite"></div>
     </main>
